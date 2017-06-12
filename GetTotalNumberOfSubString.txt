@@ -1,0 +1,42 @@
+/*
+输入一个字符串A，（不超过100）
+要求计算在字符串A中有多少个2位以上(含)的字符串回文串(1位字符不算)。
+输入：
+AAA
+
+输出：3
+
+如
+输入 aa  输出 1
+输入 ababa  输出 4
+输入 aaaaaaaaa  输出 36
+*/
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#pragma warning(disable:4996)
+char temp[101];
+int total = 0;
+int isPalindrome(int left, int right)
+{
+	while (right - left >= 1)
+	{
+		if (temp[left++] != temp[right--])return 0;
+	}
+	return 1;
+}
+int main()
+{
+	scanf("%s", temp);
+	int len = strlen(temp);
+	int left = 0;
+	int right;
+	for (; left < len; left++)
+	{
+		right = left+1;
+		for (; right < len; right++)
+			if (isPalindrome(left, right))total++;
+	}
+	printf("%d\n", total);
+	return 0;
+}
